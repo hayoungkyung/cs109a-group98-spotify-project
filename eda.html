@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Exploratory Data Analysis | Spotify Project</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Introduction" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Spotify Project for CS 109a" />
+<meta property="og:description" content="Spotify Project for CS 109a" />
+<link rel="canonical" href="https://cs109a-group98-spotify.github.io/eda.html" />
+<meta property="og:url" content="https://cs109a-group98-spotify.github.io/eda.html" />
+<meta property="og:site_name" content="Spotify Project" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://cs109a-group98-spotify.github.io/eda.html","headline":"Exploratory Data Analysis","description":"Spotify Project for CS 109a","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link href="" rel="stylesheet">
+    <title>Exploratory Data Analysis</title>
+    <!-- mathjax config similar to math.stackexchange -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$']],
+        processEscapes: true,
+        displayAlign: 'center',
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    </script>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <nav class="group">
+
+        <a href="https://cs109a-group98-spotify.github.io">Spotify Project</a>
+        &nbsp;|&nbsp;<a href="eda.html">Exploratory Data Analysis</a>
+        &nbsp;|&nbsp;<a href="models.html">Models</a>
+        &nbsp;|&nbsp;<a href="future.html">Future Directions</a>
+        &nbsp;|&nbsp;<a href="conclusion.html">Conclusion</a>
+      </nav>
+
+      <h1>Exploratory Data Analysis</h1>
+      
+      <h2 class="no_toc" id="contents">Contents</h2>
+<ul id="markdown-toc">
+  <li><a href="#description-of-data" id="markdown-toc-description-of-data">Description of Data</a><ul>
+      <li><a href="#distribution-of-data" id="markdown-toc-distribution-of-data">Distribution of Data</a></li>
+      <li><a href="#correlation-matrix" id="markdown-toc-correlation-matrix">Correlation Matrix</a></li>
+    </ul>
+  </li>
+  <li><a href="#k-means-clustering" id="markdown-toc-k-means-clustering">K-Means Clustering</a><ul>
+      <li><a href="#elbow-method" id="markdown-toc-elbow-method">The Elbow Method</a></li>
+      <li><a href="#silhouette-method" id="markdown-toc-silhouette-method">The Silhouette Method </a></li>
+    <li><a href="#cluster" id="markdown-toc-clusters">Clusters</a></li>
+    <li><a href="#word-cloud" id="markdown-toc-word-cloud">Word Cloud</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="description-of-data">Description of Data</h2>
+
+<h3 id="distribution-of-data">Distribution of Data</h3>
+
+<p>To perform exploratory data analysis, we compute the mean of each feature over all tracks in each playlist. This allows us to have a multi-parameter space where each playlist is denoted by a single point.</p>
+
+<div class="image_distributions">
+  <p style="text-align:center;"><img src="figures/distribution_1.png" alt="png" title="Distribution" height="525" width="525" />
+  <img src="figures/distribution_2.png" alt="png" title="Distribution" height="470" width="470" /> </p>
+</div>
+
+<p>The figure above shows the distribution of each feature in our data. We observe that the features follow unimodal distributions, some approximately normal. This indicates that songs on average show a spread for example in energy, danceability, tempo, key, and valence, and there are no non-conditional parameter induced separations in the data. In other words, considering the songs as a whole, their features do not show a clear separability. A couple of characteristic such as duration_ms, loudness, liveness, instrumentalness, and release_day, show an apparent heavy-tail, which might be of interest to understand why it occurs. For example, the heavy-tail of the release_date suggests that some rather old songs are timeless classics. </p>
+
+<h3 id="correlation-matrix">Correlation Matrix</h3>
+
+<p style="text-align:center;"><img src="figures/correlation_matrix.png" alt="png" title="Correlation Matrix" height="525" width="525" />
+
+<p>From the correlation matrix, we find some interesting relationship between features. The pairs (acousticness, energy) and (acousticness, loudness) are strongly negatively correlated, while (loudness, energy) are strongly positively correlated. This make sense mathematically due to transitivity and logically as acousticness is likely associated with more soft musically and therefore not loud. However, the positive correlation between loudness and energy is insightful as it sheds some light of what a rather obscure term, such as song energy, could represent.</p>
+
+<h2 id="k-means-clustering">K-Means Clustering</h2>
+
+<p>To discover and study the clusters of playlists in our data, we use the $k$-means algorithm. We believe this algorithm is both robust and interpretable enough for our data. To determine the optimal number of clusters, the model's free parameter, we use the elbow and the silhouette methods. </p>
+
+<h3 id="elbow-method">The Elbow Method</h3>
+
+<p style="text-align:center;"><img src="figures/elbow_method.png" alt="png" title="Elbow Method" height="150" width="250" />
+
+<p>While we want the distortion to be small, we want to make sure that the number of clusters we choose is not large. If the number of clusters equals the number of observations, we would have a distortion of zero, but each observation would belong to its own cluster and our model will not generalize. Therefore, we use the elbow method to help us find the optimal value of k. We note that elbow method for continuous or not clearly separable data will likely not display a clear kink, and such is the case in our present study as can be seen in figure 3. Nevertheless it allows us to observe the trade-off between distortion and number of clusters and it appears that a good value of k is 4.</p>
+
+<h3 id="silhouette-method">The Silhouette Method</h3>
+
+<p style="text-align:center;"><img src="figures/silhouette_method.png" alt="png" title="Silhouette Method" height="150" width="250" />
+
+<p></p>
+
+<h3 id="clusters">Clusters</h3>
+
+<p> To visualize our data and potential clusters, we choose two variables, danceability and energy, and train our k-means model. The results are shown in figure 4. Notice the five clusters, their centroids, and apparent Voronoi cell structure, which is again indicative of continous data. In order to understand what these clusters represent, we generate a word cloud of all track names in each cluster. </p>
+
+<p style="text-align:center;"><img src="figures/kmeans_clusters.png" alt="png" title="Clusters" height="250" width="350"/></p>
+
+<p>By analyzing the artists in each cluster, we can deduce the genre of the playlists. Cluster 0 contains Luke Bryan, Florida Georgia Line, and other names of country artists. We also see Panic by the Disco, Red Hot Chilli Peppers, and other names of alternative rock artists. Cluster 1 is composed of playlists that contain music created by Frank Sinatra and Michael Bublé, artists known for their jazz/swing music. Cluster 2 shows male rap music. Cluster 3 shows playlists with music from Justin Beiber, John Mayer, Ed Sheeran, and other pop artists. </p>
+
+<p style="text-align:center;"><img src="figures/word_cloud.png" alt="png" title="Word Cloud" height="250" width="350"/></p>
+      
+    </div>
+    <script src="/alzheimers-project/assets/javascript/anchor-js/anchor.min.js"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>

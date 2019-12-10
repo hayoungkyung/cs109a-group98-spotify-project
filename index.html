@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Introduction | Spotify Project</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Introduction" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Spotify Project for CS 109a" />
+<meta property="og:description" content="Spotify Project for CS 109a" />
+<link rel="canonical" href="https://cs109a-group98-spotify.github.io" />
+<meta property="og:url" content="https://cs109a-group98-spotify.github.io" />
+<meta property="og:site_name" content="Spotify Project" />
+<script type="application/ld+json">
+{"@type":"WebSite","url":"https://cs109a-group98-spotify.github.io","headline":"Introduction","name":"Spotify Project","description":"Spotify Project for CS 109a","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+    <link href="" rel="stylesheet">
+    <title>Introduction</title>
+    <!-- mathjax config similar to math.stackexchange -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$']],
+        processEscapes: true,
+        displayAlign: 'center',
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    </script>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <nav class="group">
+        
+        <a href="https://cs109a-group98-spotify.github.io">Spotify Project</a>        
+        &nbsp;|&nbsp;<a href="eda.html">Exploratory Data Analysis</a>
+        &nbsp;|&nbsp;<a href="models.html">Models</a>
+        &nbsp;|&nbsp;<a href="future.html">Future Directions</a>
+        &nbsp;|&nbsp;<a href="conclusion.html">Conclusion</a>
+      </nav>
+
+      <h1>Introduction</h1>
+
+      <h3 id="team-98-members">Team 98: Tudor Cristea-Platon, HaYoung Kyung, Akira Sato</h3>
+<p>CS109a Fall 2019 <br />
+<a href="https://github.com/hayoungkyung/Spotify-playlist-auto-generator">GitHub Repository</a></p>
+
+<h2 id="problem-description-and-motivation">Problem Description and Motivation</h2>
+
+<p>There are over 50 millions of songs on Spotify, making it difficult for users to discover and curate songs into playlists. We often use playlists to set the mood for studying, exercising, partying, and relaxing. Having the right playlist to accompany our schedule has become a ritual for many millennials. Automatic playlist generators not only help us discover new songs, but also allow us to enjoy playlists with certain intent. In this project, we build a model to auto-generate good (to be defined how we measure this) playlists on Spotify. We first study the different user characteristics on the platform such as intent, emotion, location, and purpose. We, then, use these features to build auto-playlist generator models that we have learned in class or outside. Finally, we compare the models' performance based on metrics such as wall-clock and possibly comparing our predictions to those of Spotify’s internal algorithm.</p>
+
+<h2 id="data-source-description">Data Source Description</h2>
+
+<p>The data set provided by CS109a staff contained the following: artist_name, track_uri, artist_uri, track_name, album_uri, duration_ms, album_name. Using the track_uri, we used Spotify's API to obtain the following features associated with each track: 
+
+<ul>
+  <li> duration (int): The duration of the track in milliseconds. </li>
+  <li> danceability (float): Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable. </li>
+  <li> energy (float): Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. </li> 
+  <li> key (int): The estimated overall key of the track. Integers map to pitches using standard Pitch Class notation. E.g. 0 = C, 1 = C#/D<sup>b</sup>, 2 = D, and so on. If no key was detected, the value is -1. </li> 
+  <li> loudness (float): The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db. </li>
+  <li> mode (int): Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0. </li> 
+  <li> acousticness (float): A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic. </li> 
+  <li> instrumentalness (float): Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. </li> 
+  <li> liveness (float): Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live. </li> 
+  <li> valence (float): A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). </li> 
+  <li> tempo (float): The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration. </li>
+  <li> popularity (int): The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time. </li> 
+  <li> release_date (date time): The date of track release.</li> 
+</ul>
+
+The descriptions and data types of each feature listed above can be found in the appendix. 
+
+There are 999,992 playlists and 6,6346,428 songs in our data.
+
+In addition to these features, we perform preliminary feature engineering. We extract the days since each track has been released from today's date (2019-11-19). For instance, if a track was released on 2018-11-19, we can subtract today's date from the release date and obtain 365 days since release date. This allows us to compute the age of the track, e.g. 365 days, which is more insightful compared to the launch date, e.g. 2018-11-19, as it potentially allows us quantify the relevance of the track to today's users.</p>
+
+<h2 id="research-questions">Research Questions</h2>
+
+<p></p>
+
+<h2 id="sources">Sources:</h2>
+
+<p>[1] </p>
+
+
+      
+    </div>
+    <script src=""></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
