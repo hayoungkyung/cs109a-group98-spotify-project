@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Models | Spotify Project</title>
+<meta name="generator" content="Jekyll v3.7.4" />
+<meta property="og:title" content="Introduction" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Spotify Project for CS 109a" />
+<meta property="og:description" content="Spotify Project for CS 109a" />
+<link rel="canonical" href="https://cs109a-group98-spotify.github.io/models.html" />
+<meta property="og:url" content="https://cs109a-group98-spotify.github.io/models.html" />
+<meta property="og:site_name" content="Spotify Project" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://cs109a-group98-spotify.github.io/models.html","headline":"Models","description":"Spotify Project for CS 109a","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link href="" rel="stylesheet">
+    <title>Models</title>
+    <!-- mathjax config similar to math.stackexchange -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$']],
+        processEscapes: true,
+        displayAlign: 'center',
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+    </script>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      <nav class="group">
+
+        <a href="https://cs109a-group98-spotify.github.io">Spotify Project</a>
+        &nbsp;|&nbsp;<a href="eda.html">Exploratory Data Analysis</a>
+        &nbsp;|&nbsp;<a href="models.html">Models</a>
+        &nbsp;|&nbsp;<a href="future.html">Future Directions</a>
+        &nbsp;|&nbsp;<a href="conclusion.html">Conclusion</a>
+      </nav>
+
+      <h1>Models</h1>
+      
+      <h2 class="no_toc" id="contents">Contents</h2>
+<ul id="markdown-toc">
+  <li><a href="#baseline" id="markdown-toc-baseline">Baseline</a><ul>
+      <li><a href="#distribution-of-data" id="markdown-toc-distribution-of-data">Distribution of Data</a></li>
+      <li><a href="#correlation-matrix" id="markdown-toc-correlation-matrix">Correlation Matrix</a></li>
+    </ul>
+  </li>
+  <li><a href="#k-means-clustering" id="markdown-toc-k-means-clustering">K-Means Clustering</a><ul>
+      <li><a href="#elbow-method" id="markdown-toc-elbow-method">The Elbow Method</a></li>
+      <li><a href="#silhouette-method" id="markdown-toc-silhouette-method">The Silhouette Method </a></li>
+    <li><a href="#cluster" id="markdown-toc-clusters">Clusters</a></li>
+    <li><a href="#word-cloud" id="markdown-toc-word-cloud">Word Cloud</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="description-of-data">Baseline</h2>
+
+<p>Our baseline model will be an unsupervised learning model as we do not have labeled data. First, we split the playlists into a train and test set using a 80-20 split, such that 80% of the total number of playlists form the training data and 20% form the test data. From the EDA, we observed the high pairwise correlation between energy, acousticness, and loudness, thus because of in our model we will keep just one of these parameters. We chose energy as it has the largest correlation with the other two. The other parameters were duration_ms, liveness, instrumentalness, danceability, key, mode, valence, tempo, and popularity. We now focus on the training set and use our k-means clustering algorithm to label playlists as belonging to one of 4 clusters.
+
+Having now obtained labeled data, we train a Random Forest with number of trees equal to 50 and maximum depth equal to 20 to match songs to their respective playlist cluster. While this is somewhat circular as we have used the $k$-means algorithm to label the data and we are now finding classes within the our own label data, it allows us to verify if our model makes sense and if it is performing well on our simplistic labeled data. We point that on the other end of the scale would be to allow each to be its own separate class, but this would likely lead to an intractable problem where the algorithm will either only work on large playlists or where it will not work at all. Some fancy bootstrap-like technique might provide salvation for the short playlists, but either way, we believe that allowing each playlist to be its own separate class will lead to over-fitting.
+
+We then evaluate our algorithm (the mix of k-means and Random Forest) on the train set and obtain a score of 0.993, while on the test set we obtain a score of 0.612. Of course there is a lot of improvements possible. One idea would be to focus only on large playlists and split them in training and test set song, and use Random Forest (or other classifier) on the training set. We would then use a large data base of songs and see what are the top predictions for songs (where the top prediction number equals the test set number of songs) and how many of these predictions are actually present in the test set.</p>
+
+      
+    </div>
+    <script src="/alzheimers-project/assets/javascript/anchor-js/anchor.min.js"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
