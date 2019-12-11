@@ -96,7 +96,12 @@
 
 <h3 id="silhouette-method">The Silhouette Method</h3>
 
-<!--<p style="text-align:center;"><img src="figures/silhouette_method.png" alt="png" title="Silhouette Method" height="150" width="250" />-->
+<div class="image_distributions">
+  <p style="text-align:center;"><img src="figures/nclusters_2_silhouette_analysis.png" alt="png" title="2 clusters" height="250" width="250" />
+  <img src="figures/nclusters_3_silhouette_analysis.png" alt="png" title="3 clusters" height="250" width="250" />
+  <p style="text-align:center;"><img src="figures/nclusters_4_silhouette_analysis.png" alt="png" title="4 clusters" height="250" width="250" />
+  <img src="figures/nclusters_5_silhouette_analysis.png" alt="png" title="5 clusters" height="250" width="250" /> </p>
+</div>
 
 <p> Another method to decide the number of clusters to use is silhouette analysis. The silhouette method measures the separation distance between the different clusters. More specifically, it measures the distance of each point in one cluster to points in the neighboring clusters. This allows us to visually assess the number of clusters. 
 
@@ -107,7 +112,7 @@ The silhouette coefficients have a range of [-1, 1]. The value of silhouette coe
   <li> -1 indicates that the observation is assigned to the wrong cluster. </li>
 </ul>
 
-The results of the silhouette analysis show that the optimal value for the number of clusters is 4. The silhouette coefficient is the closest to +1 when the number of clusters is equal to 4. </p>
+The results of the silhouette analysis show that the optimal value for the number of clusters is 3. The silhouette coefficient is the closest to +1 when the number of clusters is equal to 3. </p>
 
 <h3 id="clusters">Clusters</h3>
 
