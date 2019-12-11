@@ -98,7 +98,16 @@
 
 <!--<p style="text-align:center;"><img src="figures/silhouette_method.png" alt="png" title="Silhouette Method" height="150" width="250" />-->
 
-<p></p>
+<p> Another method to decide the number of clusters to use is silhouette analysis. The silhouette method measures the separation distance between the different clusters. More specifically, it measures the distance of each point in one cluster to points in the neighboring clusters. This allows us to visually assess the number of clusters. 
+
+The silhouette coefficients have a range of [-1, 1]. The value of silhouette coefficients is as follows,
+<ul>
+  <li> +1 indicates that the observation is far away from the neighboring clusters. </li>
+  <li> 0 indicates that the observation is near the decision boundary of two neighboring clusters. </li>
+  <li> -1 indicates that the observation is assigned to the wrong cluster. </li>
+</ul>
+
+The results of the silhouette analysis show that the optimal value for the number of clusters is 4. The silhouette coefficient is the closest to +1 when the number of clusters is equal to 4. </p>
 
 <h3 id="clusters">Clusters</h3>
 
