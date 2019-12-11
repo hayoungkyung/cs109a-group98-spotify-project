@@ -55,11 +55,11 @@
 
 <h2 id="problem-description-and-motivation">Problem Description and Motivation</h2>
 
-<p>There are over 50 millions of songs on Spotify, making it difficult for users to discover and curate songs into playlists. We often use playlists to set the mood for studying, exercising, partying, and relaxing. Having the right playlist to accompany our schedule has become a ritual for many millennials. Automatic playlist generators not only help us discover new songs, but also allow us to enjoy playlists with certain intent. In this project, we build a model to auto-generate playlists on Spotify. We first study ways to enrich our original data. We, then, use these features to build auto-playlist generator models that we have learned in class or outside. Finally, we compare the models' performance based on performance metrics formulated upon our model assumptions. </p>
+<p>There are over 50 millions of songs on Spotify, making it difficult for users to discover and curate songs into playlists[1]. We often use playlists to set the mood for studying, exercising, partying, and relaxing. Having the right playlist to accompany our schedule has become a ritual for many millennials. Automatic playlist generators not only help us discover new songs, but also allow us to enjoy playlists with certain intent. In this project, we build a model to auto-generate playlists on Spotify. We first study ways to enrich our original data. We, then, use these features to build auto-playlist generator models that we have learned in class or outside. Finally, we compare the models' performance based on performance metrics formulated upon our model assumptions. </p>
 
 <h2 id="data-source-description">Data Source Description</h2>
 
-<p>The data set provided by CS109a staff contained the following: artist_name, track_uri, artist_uri, track_name, album_uri, duration_ms, album_name. Using the track_uri, we used Spotify's API to obtain the following features associated with each track: 
+<p>The data set provided by CS109a staff contained the following: artist_name, track_uri, artist_uri, track_name, album_uri, duration_ms, album_name. Using the track_uri, we used Spotify's API[2] to obtain the following features associated with each track: 
 
 <ul>
   <li> duration (int): The duration of the track in milliseconds. </li>
@@ -87,10 +87,18 @@ In addition to these features, we perform preliminary feature engineering. We ex
 
 <p>Our research mixes elements of Big Data and prediction. Some of the questions that we tried to answer is defining what makes two playlists similar, how do we suggest playlist to users based on their preferences, and given a current playlist how can we expand it using similar songs. One of our main challenges was formulating a good problem in an unsupervised learning setting and delivering an interpretable solution.</p>
 
+<h2 id="relatedwork">Related Work:</h2>    
+
+<p> We have found that there have been student projects focused on predicting songs or playlist for Spotify. Machine learning classes at Stanford in 2018 featured final projects at Stanford in 2018 focused on predicting hit songs using logistic regression[3] and neural nets[4]. At Harvard, a capstone project for AC297R in 2017 was designed around predicting the popularity of playlists using support vector machines and random forest classifiers[5]. Automatic playlist generation based on mood has also been an active area of research with some projects being as recent as October 2019, which employed PCA and k-means[6].</p>
+    
 <h2 id="sources">Sources:</h2>
 
 <p>[1] https://medium.com/@jessicafrech/this-is-how-you-get-added-to-spotifys-curated-playlists-7f01f2f6b891</p>
 <p>[2] https://developer.spotify.com/documentation/web-api/reference/</p>
+<p>[3] http://cs229.stanford.edu/proj2018/report/16.pdf</p>
+<p>[4] https://cs230.stanford.edu/files_winter_2018/projects/6970963.pdf</p>
+<p>[5] https://rawgit.com/omarabboud/spotifycapstone/master/index.html</p>
+<p>[6] https://towardsdatascience.com/predicting-my-mood-using-my-spotify-data-2e898add122a</p>
       
     </div>
   </body>
