@@ -61,7 +61,7 @@
   <li><a href="#songseed" id="markdown-toc-songseed">Song Seed Algorithm</a><ul>
       <li><a href="#assumptions" id="markdown-toc-assumptions">Assumptions</a></li>
       <li><a href="#algorithm" id="markdown-toc-algorithm">Algorithm</a></li>
-      <li><a href="#metric" id="markdown-toc-metric">Evaluation Metric and Results</a></li>
+      <li><a href="#metric" id="markdown-toc-metric">Evaluation Metrics and Results</a></li>
     </ul>
   </li>
 </ul>
@@ -135,7 +135,7 @@ The plot on the left shows that our model outperforms Spotify's model for featur
 
 <p> We use the 100-means clustering algorithm to assings our playlists (and the songs the contain) to the 100 clusters. Note that one playlist belongs exclusively to one cluster, however a song can belong to multiple clusters and can have multiple instances for a cluster. We now select a playlist from the test set and using a 60-40 split we create a seed playlist (60% of the songs in the selected test playlist) and test songs (40% of the songs in the selected test playlist). Based on the seed playlist, we determine to which of the 100 clusters it belongs. Once this is determined, we look for playlists (the training one that were previously assigned) within this cluster that show the largest overlap in songs with the seed playlist. A typical value that we considered for the minimum number of songs overlapping was 5. This value was chosen as tradeoff between the speed of the code and accuracy of the predictions as defined below. Once these playlists have been determined we then list all the songs that were part of these playlist, but not a member of the seed playlist. We refer to these songs as forming the possibility pool. The most frequently occurring songs in the possibility pool are the ones we use as predictions to add our seed playlist. The total number of songs predicted is of course equal to number of test songs.</p>
 
-<h3 id="metric"> Evaluation Metric and Results </h3>
+<h3 id="metric"> Evaluation Metrics and Results </h3>
 
 <p> We evaluate our algorithm in three ways. First, we calculate the ratio of correct predictions to the total number of songs predicted; we call this accuracy. A plot of it is shown below. We notice that the average is 7%, which in all fairness is not great but is much better than an average chance prediction by a couple of orders of magnitude. We also see that at times it reaches above 30%.</p>
 
