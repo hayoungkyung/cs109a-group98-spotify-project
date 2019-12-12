@@ -89,8 +89,17 @@ In addition to these features, we perform preliminary feature engineering. We ex
 
 <h2 id="relatedwork">Related Work:</h2>    
 
-<p> We have found that there have been student projects focused on predicting songs or playlist for Spotify. Machine learning classes at Stanford in 2018 featured final projects at Stanford in 2018 focused on predicting hit songs using logistic regression and shallow neural nets[3], as well as linear regression and recurrent neural nets[4]. At Harvard, a capstone project for AC297r in 2017 was designed around predicting the popularity of playlists using support vector machines and random forest classifiers, among other techniques[5]. Automatic playlist generation based on mood has also been an active area of research with some projects being as recent as October 2019, which employed PCA and k-means[6]. Hence our current project is of relevance and shows a sligthly different approach to the problem.</p>
-    
+<p>We have found that there have been student projects focused on predicting songs or playlist for Spotify. Machine learning classes at Stanford in 2018 featured final projects at Stanford in 2018 focused on predicting hit songs using logistic regression and shallow neural nets[3], as well as linear regression and recurrent neural nets[4]. At Harvard, a capstone project for AC297r in 2017 was designed around predicting the popularity of playlists using support vector machines and random forest classifiers, among other techniques[5]. Automatic playlist generation based on mood has also been an active area of research with some projects being as recent as October 2019, which employed PCA and k-means[6]. Hence our current project is of relevance and shows a sligthly different approach to the problem.</p>
+<p>The following are some other works, grouped by areas of research.</p>
+<p><b>Characteristics of Playlists Specified</b></p>
+<p>In the early days of research on automatic playlist generation [7], the target characteristics of the playlist, including tempo, rhythm, and type of music, were usually specified. For example, Algoniemy et al. [7] introduced a network flow model to retrieve songs from a database based on use preferences.</p> 
+<p><b>Start and End Songs Specified</b></p>
+<p>In Flexer et al. [8], users specified a start and an end track for each playlist, and the researchers proposed a way to automatically find middle songs to enable a smooth transition from start to end. Both objective and subjective evaluations have shown that this concept works well, but there are also problems, including that there is usually at least one song that is not appropriate in the middle songs.</p>
+<p><b>Skipping Behavior</b></p>
+<p>Pampalk et al. [9] focused on obtaining feedback from users, who were able to press a skip button. At the time of the study, the common way to automatically generate playlists was for the user to either shuffle songs in a library or manually select songs. However, the researchers interpreted it as negative feedback when users pressed the skip button, and they deleted the songs that were similar to those skipped. As a result, they succeeded in reducing the amount of skipping.</p>
+<p><b>Audio-Content Analysis</b></p>
+<p>Logan et al. [10] presented a content-similarity function that was based solely on their content. First, they divided each song into “frames” of 25 ms each. Then, they converted each frame using Mel-frequency cepstral coefficients (MFCCs). Next, they used K-means clustering to cluster the frames of each song into clusters that were similar. The sets of clusters were denoted as the “signature” of that song. Finally, the researchers compared two songs by calculating the Earth Mover’s distance (EMD) as a way to accommodate local clustering. However, one of the problems they encountered was that the model was not highly accurate. For example, the average number of the 20 closest songs that had the same genre as the seed song was about 12. In addition, the average number of similar songs in playlists generated using this model was 8.2, as rated by 2 users over 20 queries.</p>
+<p></p>
 <h2 id="sources">Sources:</h2>
 
 <p>[1] https://medium.com/@jessicafrech/this-is-how-you-get-added-to-spotifys-curated-playlists-7f01f2f6b891</p>
@@ -99,7 +108,10 @@ In addition to these features, we perform preliminary feature engineering. We ex
 <p>[4] https://cs230.stanford.edu/files_winter_2018/projects/6970963.pdf</p>
 <p>[5] https://rawgit.com/omarabboud/spotifycapstone/master/index.html</p>
 <p>[6] https://towardsdatascience.com/predicting-my-mood-using-my-spotify-data-2e898add122a</p>
-      
+<p>[7] Masoud Alghoniemy and Ahmed Tewfik. A Network Flow Model for Playlist Generation. In Proceedings of the IEEE International Conference on Multimedia and Expo (ICME). Tokyo, Japan. 2001.</p>
+<p>[8] Arthur Flexer, Dominik Schnitzer, Martin Gassar, and Garhard Widmer. Playlist Generation Using Start and End Songs. In Proceedings of the International Society for Music Information Retrieval (ISMIR), pp. 173–178. Philadelphia, PA, USA. 2008.</p>
+<p>[9] Elias Pampalk, Tim Pohle, and Garhard Widmer. Dynamic Playlist Generation Based on Skipping Behavior. In Proceedings of the International Society for Music Information Retrieval (ISMIR), pp. 634–637. Amsterdam, Netherlands. 2005.</p>
+<p>[10] Beth Logan. A Content-Based Music Similarity Function (Report CRL 2001/02). Compaq Computer Corporation Cambridge Research Laboratory Technical Report Series. Cambridge, MA. June 2001.</p>      
     </div>
   </body>
 </html>
